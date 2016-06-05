@@ -59,6 +59,8 @@ LIBRARY += -L$(LIB_DIR)
 CFLAGS += $(INCLUDE)
 LDFLAGS += $(LIBRARY) 
 
+LDFLAGS += -pthread
+
 DEPS := $(wildcard $(INC_DIR)/*.h)
 
 all: dirs 3rdparty test

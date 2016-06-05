@@ -5,6 +5,4 @@ os:
 - linux
 - osx
 script:
-- make
-- ./bin/test/foo_test.bin
-- ./bin/test/bar_test.bin
+- "make && ./bin/test/foo_test.bin && ./bin/test/bar_test.bin"
