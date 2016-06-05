@@ -4,7 +4,6 @@ compiler:
 os:
 - linux
 - osx
-
 script:
 - make
 - ./bin/test/foo_test.bin
