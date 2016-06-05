@@ -31,9 +31,7 @@ public:
       if (delta > 0) {
         // will have two results
         num_sol = 2;
-        *sol = (T *) malloc(sizeof(T) * num_sol);
-        if (*sol == NULL) 
-          throw "Cannot allocate more memory";
+        this->alloc(num_sol, sol);
         // two solutions
         (*sol)[0] = (-b + sqrt(delta))/(2 * a);
         (*sol)[1] = (-b - sqrt(delta))/(2 * a);
@@ -41,17 +39,13 @@ public:
         *sol = NULL; // there's no solution, set the solution pointer to NULL
       } else { /* delta == 0 */
         num_sol = 1;
-        *sol = (T *) malloc(sizeof(T) * num_sol);
-        if (*sol == NULL) 
-          throw "Cannot allocate more memory";
+        this->alloc(num_sol, sol);
         (*sol)[0] = -b / (2 * a); 
       }
     } else {
       if (b != 0) {
         num_sol = 1;
-        *sol = (T *) malloc(sizeof(T) * num_sol);
-        if (*sol == NULL) 
-          throw "Cannot allocate more memory";
+        this->alloc(num_sol, sol);
         (*sol)[0] = -c / b; 
       } else {
         if (c == 0) 
@@ -61,6 +55,16 @@ public:
 
     return num_sol;
   }
+private: 
+  void alloc(int num_sol, T **sol);
 };
+
+template <typename T>
+void EquationSolver<T>::alloc(int num_sol, T **sol) {
+  *sol = (T *) malloc(sizeof(T) * num_sol);
+  if (*sol == NULL) 
+    throw "Cannot allocate more memory";
+  // success
+}
 
 #endif

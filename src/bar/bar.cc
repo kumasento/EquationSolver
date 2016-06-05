@@ -6,4 +6,3 @@
 
 #include "bar.h"
 
-// Nothing to be done here
